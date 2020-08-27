@@ -16,8 +16,15 @@
 
 <body>
     <div class="container">
-        <div class="board" id="board"></div>
-        <button onclick="start()">start</button>
+        <div class="board" id="board">
+            <div class="egg" id="egg"></div>
+        </div>
+        <div id="score-container" class="score-container">
+            <button onclick="start()" id="start">start</button>
+            <button onclick="stop()" id="stop">stop</button>
+            <div id="timer" class="timer"></div>
+        </div>
+        
     </div>
     <script src="index.js"></script>
 </body>

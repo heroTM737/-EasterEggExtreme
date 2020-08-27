@@ -24,6 +24,33 @@ body {
     position: absolute;
     /* overide inline */
     background: red;
-    top: 0px;
+    top: 0;
     left: 0;
+}
+
+.egg {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    /* overide inline */
+    background: blue;
+    top: 0;
+    left: 0;
+}
+
+.score-container {
+    padding: 0 10px;
+}
+
+.player-score {
+    padding: 10px 0;
+}
+
+.timer {
+    padding: 10px 0;
+}
+
+#stop {
+    display: none;
 }
