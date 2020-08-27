@@ -9,7 +9,7 @@ const mapKeyCodeToAction = {
     39: 'right',
     40: 'down'
 }
-const ratio = 20
+const ratio = 40
 var playerId = null
 var updateTime = 50
 var gameDuration = 0
@@ -41,9 +41,17 @@ socket.on('setup', data => {
             top: player.y * ratio,
             left: player.x * ratio
         })
-        $('#score-container').append(`<div id="score-${id}" class="player-score" style="color:${color};">Player ${id}: 0</div>`)
+        $('#score-container').append(
+            `<div class="player-score" style="color:${color};">
+                <div>
+                    ${buildCatIcon(color, 70)} 
+                    <span id="score-${id}"></span
+                </div>
+                <div class="d-flex justify-center">${id === playerId ? 'You' : ''}</div>
+            </div>`
+        )
     }
-    $('#board').append(`<div class="egg" id="egg">${buildFishIcon('blue', ratio)}</div>`)
+    $('#board').append(`<div class="egg" id="egg">${buildFishIcon('white', ratio)}</div>`)
     $('#egg').css({
         top: data.egg.y * ratio,
         left: data.egg.x * ratio,
@@ -62,8 +70,8 @@ socket.on('state', playerMap => {
         playerEl.animate({
             top: player.y * ratio,
             left: player.x * ratio
-        }, updateTime)
-        $('#score-' + i).html(`Player ${i}: ${player.score}`)
+        }, updateTime, 'linear')
+        $('#score-' + i).html(player.score)
     }
 })
 

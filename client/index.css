@@ -2,7 +2,7 @@ body {
     margin: 0;
     background-image: url(./img/bg.jpg);
     background-size: auto 100vh;
-    background-repeat:  repeat-x;
+    background-repeat: repeat-x;
 }
 
 .board-container {
@@ -76,4 +76,20 @@ body {
 
 .game-footer.score {
     justify-content: center;
+}
+
+.btn-game {
+    width: 200px;
+    height: 100px;
+    background-color: transparent;
+    border: none;
+    background-size: auto 100%;
+}
+
+.btn-start {
+    background-image: url(./img/play.png);
+}
+
+.btn-stop {
+    background-image: url(./img/stop.png);
 }

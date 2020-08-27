@@ -3,14 +3,14 @@ const { clearInterval } = require('timers');
 const server = require('http').createServer();
 const io = require('socket.io')(server);
 const numberOfPlayer = 3
-const updateTime = 50
+const updateTime = 100
 const gameDuration = (1 * 60 + 30) * 1000
 const boardSize = {
-    w: 60,
-    h: 40
+    w: 30,
+    h: 20
 }
 
-const catColorList = ['black', 'red', 'purple', 'green', 'pink', 'brown']
+const catColorList = ['#70AD47', '#FFC000', '#ED7D31', '#70AD47', 'pink', 'brown']
 
 function getEgg() {
     return {

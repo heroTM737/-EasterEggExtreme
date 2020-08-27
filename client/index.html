@@ -22,8 +22,8 @@
     <div class="board-container">
         <div class="board" id="board"></div>
         <div class="score-container">
-            <button onclick="start()" id="start" class="btn btn-primary">start</button>
-            <button onclick="stop()" id="stop" class="btn btn-primary">stop</button>
+            <button onclick="start()" id="start" class="btn-game btn-start"></button>
+            <button onclick="stop()" id="stop" class="btn-game btn-stop"></button>
         </div>
     </div>
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -45,11 +45,17 @@
         </div>
       </div>
       <div class="game-footer">
-        <img src="./img/logo.png" alt="" class="logo">
+        <img src="./img/logo.png" alt="" class="mr-3" style="height: 10vh;">
+        <div style="flex: 1 1 1px;"></div>
+        <div class="d-flex" id="score-container"></div>
         <div style="flex: 1 1 1px;"></div>
         <div id="timer" class="timer"></div>
+        <div style="flex: 1 1 1px;"></div>
+        <img src="./img/ubi.png" alt="" class="logo" style="height: 10vh;">
+        
+        
       </div>
-      <div class="game-footer score" id="score-container"></div>
+      
     <script src="index.js"></script>
 </body>
 
