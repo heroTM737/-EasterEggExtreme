@@ -42,7 +42,8 @@ io.on('connection', client => {
             playerId: '1',
             updateTime: updateTime,
             egg: egg,
-            gameDuration: gameDuration
+            gameDuration: gameDuration,
+            boardSize: boardSize
         })
     })
 

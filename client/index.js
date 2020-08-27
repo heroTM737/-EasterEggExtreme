@@ -19,6 +19,10 @@ socket.on('setup', data => {
     playerId = data.playerId
     updateTime = data.updateTime
     gameDuration = data.gameDuration
+    $('#board').css({
+        width: data.boardSize.w * ratio,
+        height: data.boardSize.h * ratio
+    })
     var totalSecond = gameDuration / 1000
     var minute = Math.floor(totalSecond / 60)
     var second = totalSecond % 60
