@@ -18,8 +18,6 @@ function getEgg() {
 }
 
 io.on('connection', client => {
-    console.log('connected')
-
     var playerMap = {}
     var updateInterval = null
     var statusTimeout = null
@@ -99,7 +97,6 @@ io.on('connection', client => {
                 var player = playerMap[i]
                 if (player.x === egg.x && player.y === egg.y) {
                     player.score++
-                    console.log(`player ${i}: ${player.score}`);
                     egg = getEgg()
                     client.emit('egg', egg)
                     break
@@ -121,7 +118,6 @@ io.on('connection', client => {
         client.emit('stop')
     });
     client.on('disconnect', () => {
-        console.log('disconnect')
         clearInterval(updateInterval)
         clearTimeout(statusTimeout)
     });

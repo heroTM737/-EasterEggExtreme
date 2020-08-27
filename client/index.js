@@ -1,5 +1,6 @@
 var host = window.location.href
 host = host.includes('tientm.com') ? 'http://easter-egg-extreme.tientm.com' : 'http://127.0.0.1:3000'
+host = 'http://128.199.190.81:3000'
 console.log(host);
 const socket = io(host);
 
