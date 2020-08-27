@@ -1,6 +1,5 @@
 var host = window.location.href
-host = host.includes('tientm.com') ? 'http://easter-egg-extreme.tientm.com' : 'http://127.0.0.1:3000'
-host = 'http://128.199.190.81:3000'
+host = host.includes('tientm.com') ? 'http://128.199.190.81:3000' : 'http://127.0.0.1:3000'
 console.log(host);
 const socket = io(host);
 
@@ -38,8 +37,9 @@ socket.on('setup', data => {
 
 socket.on('state', playerMap => {
     for (var i in playerMap) {
-        var playerEl = $('#' + i)
         var player = playerMap[i]
+        var playerEl = $('#' + i)
+        playerEl.stop()
         playerEl.animate({
             top: player.y * ratio,
             left: player.x * ratio
@@ -73,12 +73,15 @@ function start() {
     var totalSecond = gameDuration / 1000
     var minute = Math.floor(totalSecond / 60)
     var second = totalSecond % 60
+    second--
+    $('#timer').html(`${minute}:${second < 10 ? '0' + second : second}`)
     timer = setInterval(() => {
         second--
         if (second < 0) {
             minute--
             if (minute < 0) {
                 minute = 0
+                second = 0
                 clearInterval(timer)
             } else {
                 second = 60
