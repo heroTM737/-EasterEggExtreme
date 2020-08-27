@@ -12,20 +12,44 @@
     <!-- javascript -->
     <script src="socket.io.js"></script>
     <script src="jquery.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="bootstrap-4.5.2-dist/css/bootstrap.min.css">
+    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="board" id="board">
-            <div class="egg" id="egg"></div>
+    <div class="board-container">
+        <div class="board" id="board"></div>
+        <div class="score-container">
+            <button onclick="start()" id="start" class="btn btn-primary">start</button>
+            <button onclick="stop()" id="stop" class="btn btn-primary">stop</button>
         </div>
-        <div id="score-container" class="score-container">
-            <button onclick="start()" id="start">start</button>
-            <button onclick="stop()" id="stop">stop</button>
-            <div id="timer" class="timer"></div>
-        </div>
-        
     </div>
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Game ended</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" onclick="restart()">Restart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game-footer">
+        <img src="./img/logo.png" alt="" class="logo">
+        <div style="flex: 1 1 1px;"></div>
+        <div id="timer" class="timer"></div>
+      </div>
+      <div class="game-footer score" id="score-container"></div>
     <script src="index.js"></script>
 </body>
 

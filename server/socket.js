@@ -6,9 +6,11 @@ const numberOfPlayer = 3
 const updateTime = 50
 const gameDuration = (1 * 60 + 30) * 1000
 const boardSize = {
-    w: 80,
-    h: 80
+    w: 60,
+    h: 40
 }
+
+const catColorList = ['black', 'red', 'purple', 'green', 'pink', 'brown']
 
 function getEgg() {
     return {
@@ -34,11 +36,12 @@ io.on('connection', client => {
                 direction: 'down',
                 x: 0,
                 y: 0,
-                score: 0
+                score: 0,
+                color: catColorList[i]
             }
         }
         client.emit('setup', {
-            idList: idList,
+            playerMap: playerMap,
             playerId: '1',
             updateTime: updateTime,
             egg: egg,
@@ -70,6 +73,15 @@ io.on('connection', client => {
         statusTimeout = setTimeout(() => {
             gameStatus = false
             clearInterval(updateInterval)
+            var winner = {
+                score: 0
+            }
+            for (let i in playerMap) {
+                if (playerMap[i].score > winner.score) {
+                    winner = playerMap[i]
+                }
+            }
+            client.emit('stop', winner)
         }, gameDuration)
         for (var i in playerMap) {
             if (i !== playerId) {
@@ -99,7 +111,9 @@ io.on('connection', client => {
                 if (player.x === egg.x && player.y === egg.y) {
                     player.score++
                     egg = getEgg()
-                    client.emit('egg', egg)
+                    setTimeout(() => {
+                        client.emit('egg', egg)
+                    }, updateTime)
                     break
                 }
             }
@@ -116,7 +130,7 @@ io.on('connection', client => {
         gameStatus = false
         clearInterval(updateInterval)
         clearTimeout(statusTimeout)
-        client.emit('stop')
+        client.emit('stop', null)
     });
     client.on('disconnect', () => {
         clearInterval(updateInterval)
