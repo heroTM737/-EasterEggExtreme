@@ -4,18 +4,22 @@ const server = require('http').createServer();
 const io = require('socket.io')(server);
 const numberOfPlayer = 3
 const updateTime = 100
-const gameDuration = (1 * 60 + 30) * 1000
+const gameDuration = (0 * 60 + 30) * 1000
+const eggMaxScore = 3
 const boardSize = {
     w: 30,
     h: 20
 }
 
-const catColorList = ['#70AD47', '#FFC000', '#ED7D31', '#70AD47', 'pink', 'brown']
+const catColorList = ['#fff', '#FFC000', '#ED7D31', '#70AD47', 'pink', 'brown']
 
 function getEgg() {
+    var score = Math.floor(Math.random() * 3)
     return {
         x: Math.floor(Math.random() * boardSize.w),
-        y: Math.floor(Math.random() * boardSize.h)
+        y: Math.floor(Math.random() * boardSize.h),
+        score: score + 1,
+        color: catColorList[score]
     }
 }
 
@@ -46,7 +50,8 @@ io.on('connection', client => {
             updateTime: updateTime,
             egg: egg,
             gameDuration: gameDuration,
-            boardSize: boardSize
+            boardSize: boardSize,
+            fishColorList: catColorList.slice(0, eggMaxScore)
         })
     })
 
@@ -109,7 +114,7 @@ io.on('connection', client => {
             for (var i in playerMap) {
                 var player = playerMap[i]
                 if (player.x === egg.x && player.y === egg.y) {
-                    player.score++
+                    player.score += egg.score
                     egg = getEgg()
                     setTimeout(() => {
                         client.emit('egg', egg)

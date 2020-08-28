@@ -25,6 +25,7 @@ socket.on('setup', data => {
     })
     $('#board').empty()
     $('#score-container').empty()
+    $('#fish-container').empty()
     var totalSecond = gameDuration / 1000
     var minute = Math.floor(totalSecond / 60)
     var second = totalSecond % 60
@@ -50,8 +51,12 @@ socket.on('setup', data => {
                 <div class="d-flex justify-center">${id === playerId ? 'You' : ''}</div>
             </div>`
         )
+
     }
-    $('#board').append(`<div class="egg" id="egg">${buildFishIcon('white', ratio)}</div>`)
+    for (var i = 0; i < data.fishColorList.length; i++) {
+        $('#fish-container').append(`<div class="fish-des">${buildFishIcon(data.fishColorList[i], ratio)} ${i + 1}</div>`)
+    }
+    $('#board').append(`<div class="egg" id="egg">${buildFishIcon(data.egg.color, ratio)}</div>`)
     $('#egg').css({
         top: data.egg.y * ratio,
         left: data.egg.x * ratio,
@@ -79,6 +84,9 @@ socket.on('egg', egg => {
     $('#egg').css({
         top: egg.y * ratio,
         left: egg.x * ratio
+    })
+    $('#egg svg g').css({
+        fill: egg.color
     })
 })
 
@@ -132,6 +140,7 @@ function stop() {
     $('#stop').css('display', 'none')
     $('#start').css('display', 'block')
     socket.emit('stop')
+    socket.emit('setup')
 }
 
 socket.emit('setup')

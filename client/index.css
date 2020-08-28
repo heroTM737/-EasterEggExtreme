@@ -42,8 +42,20 @@ body {
     left: 0;
 }
 
-.score-container {
+.action-container {
     padding: 0 10px;
+}
+
+.fish-des {
+    margin: 10px 0;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.fish-des svg {
+    margin-right: 10px;
 }
 
 .player-score {
