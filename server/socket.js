@@ -4,7 +4,7 @@ const server = require('http').createServer();
 const io = require('socket.io')(server);
 const numberOfPlayer = 3
 const updateTime = 100
-const gameDuration = (0 * 60 + 30) * 1000
+const gameDuration = (1 * 60 + 30) * 1000
 const eggMaxScore = 3
 const boardSize = {
     w: 30,
